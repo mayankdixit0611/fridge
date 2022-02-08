@@ -60,7 +60,7 @@ scene.add(directionalLight4);
 
 
 gltfLoader.load(
-    '/models/VB/VB.gltf',
+    '/models/VB/VBwithButtons.gltf',
     (gltf) => {
         const model = gltf.scene;
         model.scale.set(2.25, 2.25, 2.25)
@@ -77,6 +77,10 @@ gltfLoader.load(
                 child.material.metalness = 0.4
             } else if (child.name == "SM_Glass_1" || child.name == "SM_Glass_2" || child.name == "SM_DoorPanel_1" ||child.name == "SM_DoorPanel_2") {
                 console.log(child)               
+            }
+
+            if(child.name == "SM_Button_1" ||child.name == "SM_Button_2" ||child.name == "SM_Button_3" ){
+                child.scale.set(3,3,3);
             }
         });
         scene.add(model)
@@ -128,19 +132,13 @@ window.addEventListener('mousemove', (event) => {
 
 window.addEventListener('click', () => {
     if (currentIntersect) {
-        if (currentIntersect.object.name == "SM_Button_1_1") {
+        if (currentIntersect.object.name == "SM_Button_1") {
             moveToSelectedObject(currentIntersect.object, 1, 1);
-        } else if (currentIntersect.object.name == "SM_Button_1_2") {
+        } else if (currentIntersect.object.name == "SM_Button_2") {
             moveToSelectedObject(currentIntersect.object, -1, 1);
-        } else if (currentIntersect.object.name == "SM_Button_2_1") {
-            moveToSelectedObject(currentIntersect.object, -1, 1);
-        } else if (currentIntersect.object.name == "SM_Button_2_2") {
-            moveToSelectedObject(currentIntersect.object, -1, 1);
-        } else if (currentIntersect.object.name == "SM_Button_3_1") {
-            moveToSelectedObject(currentIntersect.object, -1, 1);
-        } else if (currentIntersect.object.name == "SM_Button_3_2") {
-            moveToSelectedObject(currentIntersect.object, -1, 1);
-        }
+        } else if (currentIntersect.object.name == "SM_Button_3") {
+            moveToSelectedObject(currentIntersect.object, 1, -1);
+        } 
     }
 })
 
